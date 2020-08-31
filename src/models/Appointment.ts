@@ -1,23 +1,15 @@
-import { v4 } from 'uuid';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-interface AppointmentConstructor {
-  provider: string;
-  date: Date;
-}
-
+@Entity('appointments')
 class Appointment {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   provider: string;
 
+  @Column('time with time zone')
   date: Date;
-
-  constructor({ provider, date }: Omit<Appointment, 'id'>) {
-    this.id = v4();
-    this.provider = provider;
-    this.date = date;
-  }
 }
 
 export default Appointment;
