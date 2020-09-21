@@ -28,4 +28,20 @@ describe('SendForgorPasswordEmail', () => {
 
     expect(sendMail).toHaveBeenCalled();
   });
+
+  it('should not be able to recover a non-existing user password', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeMailProvider = new FakeMailProvider();
+
+    const sendForgorPasswordEmail = new SendForgotPasswordEmailService(
+      fakeUsersRepository,
+      fakeMailProvider,
+    );
+
+    await expect(
+      sendForgorPasswordEmail.execute({
+        email: 'joh@example.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
