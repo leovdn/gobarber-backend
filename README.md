@@ -1,4 +1,4 @@
-# gostack-modulo02-backend
+# GoBarber - Backend
 
 ## Sobre
 Servidor backend da aplicação GoBarber desenvolvida a partir do módulo 02 no bootcamp Gostack. Utilizando conceitos de SOLID e Test Driven Design e migrations. 
