@@ -1,14 +1,15 @@
 # gostack-modulo02-backend
 
 ## Sobre
-Servidor backend da aplicação GoBarber desenvolvida desde o módulo 02 no bootcamp Gostack
+Servidor backend da aplicação GoBarber desenvolvida a partir do módulo 02 no bootcamp Gostack. Utilizando conceitos de SOLID e Test Driven Design e migrations. 
+Após realização do levantamento de requisitos, a aplicação foi desenvolvida a partir da criação de testes simulando as funcionalidades reais do projeto.
 
 ## How to Integrate
 - run yarn dev:server
 
-# Funcionalidades
+# Análise de Requisitos / Funcionalidades
 
-## Recuperação de senha
+## 1.Recuperação de senha
 **RF (Requisitos Funcionais)**
 
 - Usuário deve poder recuperar sua senha informando seu e-mail;
@@ -28,7 +29,7 @@ Servidor backend da aplicação GoBarber desenvolvida desde o módulo 02 no boot
 
 ---
 
-## Atualização do perfil
+## 2.Atualização do perfil
 **RF (Requisitos Funcionais)**
 - Usuário deve poder atualizar seu nome, e-mail, senha;
 
@@ -42,7 +43,7 @@ Servidor backend da aplicação GoBarber desenvolvida desde o módulo 02 no boot
 
 ---
 
-## Painel do Prestador
+## 3.Painel do Prestador
 **RF (Requisitos Funcionais)**
 
 - Usuário deve poder listar seus agendamentos de um dia específico;
@@ -60,7 +61,7 @@ Servidor backend da aplicação GoBarber desenvolvida desde o módulo 02 no boot
 - Notificação deve ter status de lida ou não-lida para que o prestador possa obter controle;
 
 ---
-## Agendamento de serviços
+## 4.Agendamento de serviços
 
 **RF (Requisitos Funcionais)**
 
