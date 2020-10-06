@@ -1,10 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
+import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '@modules/users/infra/typeorm/entities/User';
-
-import 'reflect-metadata';
 
 interface IRequest {
   user_id: string;
@@ -22,6 +21,9 @@ class ListProvidersService {
       except_user_id: user_id,
     });
 
+    if (!users) {
+      throw new AppError('User not found');
+    }
     return users;
   }
 }

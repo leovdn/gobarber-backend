@@ -1,9 +1,8 @@
 import { injectable, inject } from 'tsyringe';
+
 import { getDaysInMonth, getDate } from 'date-fns';
 
-// import User from '@modules/users/infra/typeorm/entities/User';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
-import 'reflect-metadata';
 
 interface IRequest {
   provider_id: string;
@@ -11,7 +10,7 @@ interface IRequest {
   year: number;
 }
 
-type IResponse = Array<{
+type IReponse = Array<{
   day: number;
   available: boolean;
 }>;
@@ -27,8 +26,8 @@ class ListProviderMonthAvailabilityService {
     provider_id,
     year,
     month,
-  }: IRequest): Promise<IResponse> {
-    const appointments = await this.appointmentsRepository.findALlInMonthFromProvider(
+  }: IRequest): Promise<IReponse> {
+    const appointments = await this.appointmentsRepository.findAllInMonthFromProvider(
       {
         provider_id,
         year,
@@ -39,7 +38,9 @@ class ListProviderMonthAvailabilityService {
     const numberOfDaysInMonth = getDaysInMonth(new Date(year, month - 1));
 
     const eachDayArray = Array.from(
-      { length: numberOfDaysInMonth },
+      {
+        length: numberOfDaysInMonth,
+      },
       (_, index) => index + 1,
     );
 

@@ -1,13 +1,10 @@
-import AppError from '@shared/errors/AppError';
-import 'reflect-metadata';
-
+import FakeAppointmentsRepository from '@modules/appointments/repositories/fakes/FakeAppointmentsRepository';
 import ListProviderDayAvailabilityService from './ListProviderDayAvailabilityService';
-import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 
-let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let listProviderDayAvailability: ListProviderDayAvailabilityService;
+let fakeAppointmentsRepository: FakeAppointmentsRepository;
 
-describe('ListProviderDayAvailability', () => {
+describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
     listProviderDayAvailability = new ListProviderDayAvailabilityService(
@@ -15,7 +12,7 @@ describe('ListProviderDayAvailability', () => {
     );
   });
 
-  it('should be able to list the month availability from provider', async () => {
+  it('should be able to list the day availability from provider', async () => {
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
       date: new Date(2020, 4, 20, 8, 0, 0),

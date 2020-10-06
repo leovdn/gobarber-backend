@@ -1,9 +1,8 @@
 import { injectable, inject } from 'tsyringe';
-// import { getDaysInMonth, getDate } from 'date-fns';
 
-// import User from '@modules/users/infra/typeorm/entities/User';
+import { getHours } from 'date-fns';
+
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
-import 'reflect-metadata';
 
 interface IRequest {
   provider_id: string;
@@ -12,7 +11,7 @@ interface IRequest {
   year: number;
 }
 
-type IResponse = Array<{
+type IReponse = Array<{
   hour: number;
   available: boolean;
 }>;
@@ -29,8 +28,35 @@ class ListProviderDayAvailabilityService {
     year,
     month,
     day,
-  }: IRequest): Promise<IResponse> {
-    return [{ hour: 8, available: true }];
+  }: IRequest): Promise<IReponse> {
+    const appointments = await this.appointmentsRepository.findAllInDayFromProvider(
+      {
+        provider_id,
+        year,
+        month,
+        day,
+      },
+    );
+
+    const hourStart = 8;
+
+    const eachHourArray = Array.from(
+      { length: 10 },
+      (_, index) => index + hourStart,
+    );
+
+    const availability = eachHourArray.map(hour => {
+      const hasAppintmentInHour = appointments.find(
+        appointment => getHours(appointment.date) === hour,
+      );
+
+      return {
+        hour,
+        available: !hasAppintmentInHour,
+      };
+    });
+
+    return availability;
   }
 }
 
