@@ -24,8 +24,6 @@ export default class EtherialMailProvider implements IMailProvider {
         },
       });
 
-      console.log(account);
-
       this.client = transporter;
     });
   }
